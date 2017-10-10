@@ -15,6 +15,7 @@ defmodule Kaffe.Config.Consumer do
       subscriber_retry_delay_ms: subscriber_retry_delay_ms(),
       offset_reset_policy: offset_reset_policy(),
       worker_allocation_strategy: worker_allocation_strategy(),
+      size_stat_window: size_stat_window()
     }
   end
 
@@ -84,6 +85,10 @@ defmodule Kaffe.Config.Consumer do
 
   def worker_allocation_strategy do
     config_get(:worker_allocation_strategy, :worker_per_partition)
+  end
+
+  def size_stat_window do
+    config_get(:size_stat_window, 5)
   end
 
   def maybe_heroku_kafka_ssl do

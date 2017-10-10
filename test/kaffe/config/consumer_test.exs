@@ -32,7 +32,8 @@ defmodule Kaffe.Config.ConsumerTest do
         subscriber_retries: 1,
         subscriber_retry_delay_ms: 5,
         offset_reset_policy: :reset_by_subscriber,
-        worker_allocation_strategy: :worker_per_partition
+        worker_allocation_strategy: :worker_per_partition,
+        size_stat_window: 5
       }
 
       assert Kaffe.Config.Consumer.configuration == expected
