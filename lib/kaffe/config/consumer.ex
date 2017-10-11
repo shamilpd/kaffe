@@ -111,4 +111,13 @@ defmodule Kaffe.Config.Consumer do
     Application.get_env(:kaffe, :consumer)
     |> Keyword.get(key, default)
   end
+
+  def partition_consumer_config do
+    [
+      max_bytes: max_bytes(),
+      begin_offset: begin_offset(),
+      offset_reset_policy: offset_reset_policy(),
+      size_stat_window: size_stat_window()
+    ]
+  end
 end

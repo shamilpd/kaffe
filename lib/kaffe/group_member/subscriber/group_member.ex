@@ -43,7 +43,7 @@ defmodule Kaffe.GroupMember do
   def init([subscriber_name, consumer_group, worker_manager_pid, topic]) do
 
     config = Kaffe.Config.Consumer.configuration
-    :ok = kafka().start_consumer(subscriber_name, topic, config)
+    :ok = kafka().start_consumer(subscriber_name, topic, config.partition_consumer_config)
     {:ok, pid} = group_coordinator().start_link(subscriber_name, consumer_group,
       [topic], _group_config = [], __MODULE__, self())
 
