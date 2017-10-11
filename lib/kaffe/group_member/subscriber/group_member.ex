@@ -15,7 +15,7 @@ defmodule Kaffe.GroupMember do
 
   Also: https://github.com/klarna/brucke/blob/master/src/brucke_member.erl
 
-  The `brod_group_member` behavior is used. 
+  The `brod_group_member` behavior is used.
   """
 
   use GenServer
@@ -42,7 +42,8 @@ defmodule Kaffe.GroupMember do
 
   def init([subscriber_name, consumer_group, worker_manager_pid, topic]) do
 
-    :ok = kafka().start_consumer(subscriber_name, topic, [])
+    config = Kaffe.Config.Consumer.configuration
+    :ok = kafka().start_consumer(subscriber_name, topic, config)
     {:ok, pid} = group_coordinator().start_link(subscriber_name, consumer_group,
       [topic], _group_config = [], __MODULE__, self())
 
